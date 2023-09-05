@@ -30,8 +30,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
     	$request->validate([
-    		'email' => 'required|email',
-    		'password' => 'required',
+    		'email' => '',
+    		'password' => '',
     	]);
     	
         $credentials = $request->only('email', 'password');
@@ -40,7 +40,7 @@ class AuthController extends Controller
             return $this->respondWithToken($token);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json(['error' => 'bad request'], 400);
     }
 
     /**
